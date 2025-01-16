@@ -46,15 +46,17 @@ namespace ModelGeneratorUI
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {
+            string endpointJsonFile = string.Empty;
             SelectProjectButton.Enabled = false;
             GenerateButton.Enabled = false;
             JsonSchemaParser.GenerateArraysInstedOfLists = ArrayCollectionsCheckbox.Checked;
-
+            endpointJsonFile = File.ReadAllText(SchemaTextBox.Text);
             LogTextBox.Text = "Generating...";
             Schema schema;
             try
             {
-                schema = JsonSchemaParser.ComposeEndpointSchema(SchemaTextBox.Text);
+                //schema = JsonSchemaParser.ComposeEndpointSchema(SchemaTextBox.Text);
+                schema = JsonSchemaParser.ComposeEndpointSchema(endpointJsonFile);
             }
             catch (Exception ex)
             {
